@@ -502,137 +502,272 @@ body::after {
     background-clip: text;
 }
 
-/* === Artistic Benefits Section === */
+/* === Circular Audio Cluster Benefits Section === */
 .benefits-section-artistic {
     margin-bottom: var(--space-xl);
-    position: relative;
+    padding: 60px 0;
     overflow: hidden;
 }
 
-.artistic-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
-    gap: 20px;
-    margin-top: var(--space-lg);
+.audio-circles-cluster {
+    position: relative;
+    height: 480px;
+    /* Taller for spread-out floating feel */
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.artistic-item {
-    position: relative;
+.audio-circle-item {
+    position: absolute;
+    border-radius: 50%;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    align-items: center;
 }
 
-.artistic-item.item-1 {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    transform: translateY(20px);
-}
-
-.artistic-item.item-2 {
-    grid-column: 2 / 3;
-    grid-row: 1 / 3;
-    align-self: center;
-}
-
-.artistic-item.item-3 {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    transform: translateY(-20px);
-}
-
-.artistic-image-wrap {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    /* Beautiful Arch/Organic Shape */
-    clip-path: ellipse(80% 100% at 50% 100%);
-    border-radius: 40% 40% 20% 20% / 30% 30% 10% 10%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    background: var(--color-bg-card);
-}
-
-.artistic-image {
-    width: 100%;
-    aspect-ratio: 0.8;
-    /* Portrait feel for artistic look */
-    background-size: cover;
-    background-position: center;
-    transition: transform 1.2s ease;
-}
-
-.artistic-item:hover .artistic-image {
-    transform: scale(1.1);
-}
-
-.artistic-content {
-    position: absolute;
-    bottom: 10%;
-    left: -5%;
-    right: 5%;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius-md);
-    z-index: 2;
-    transform: rotate(-2deg);
-    pointer-events: none;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.item-2 .artistic-content {
-    left: 5%;
-    right: -5%;
-    transform: rotate(2deg);
-    bottom: 20%;
-}
-
-.artistic-label {
-    display: block;
-    font-family: var(--font-script);
-    font-size: 1.2rem;
-    color: var(--color-flame);
-    margin-bottom: 2px;
-}
-
-.artistic-text {
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-text-primary);
-}
-
-.artistic-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 40%, rgba(20, 10, 30, 0.4));
-    pointer-events: none;
-}
-
-/* Floating Animation */
-@keyframes artisticFloat {
-
-    0%,
-    100% {
-        transform: translateY(0px) rotate(0deg);
+/* Animations */
+@keyframes breathingPulse {
+    0% {
+        transform: scale(1);
     }
 
     50% {
-        transform: translateY(-10px) rotate(1deg);
+        transform: scale(1.08);
+    }
+
+    /* More pronounced zoom */
+    100% {
+        transform: scale(1);
     }
 }
 
-.artistic-item:nth-child(even) {
-    animation: artisticFloat 6s ease-in-out infinite;
+@keyframes slowFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    33% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+
+    66% {
+        transform: translateY(10px) rotate(-1deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
 }
 
-.artistic-item:nth-child(odd) {
-    animation: artisticFloat 7s ease-in-out infinite reverse;
+.circle-image-wrap {
+    position: relative;
+    border-radius: 50%;
+    padding: 4px;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), transparent);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
 }
+
+.circle-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Base sizing classes (Logical) */
+.circle-main {
+    width: 170px;
+    z-index: 15;
+}
+
+.circle-left,
+.circle-right {
+    width: 130px;
+    z-index: 10;
+}
+
+.circle-mid-top,
+.circle-mid-bottom {
+    width: 110px;
+    z-index: 8;
+}
+
+.circle-top-left,
+.circle-bottom-right {
+    width: 95px;
+    z-index: 6;
+}
+
+.circle-bg-1,
+.circle-bg-2,
+.circle-bg-3,
+.circle-bg-4 {
+    width: 65px;
+    height: 65px;
+    opacity: 0.25;
+    z-index: 1;
+    filter: blur(2px);
+}
+
+/* Apply sizes to images */
+.circle-main .circle-image {
+    width: 162px;
+    height: 162px;
+}
+
+.circle-left .circle-image,
+.circle-right .circle-image {
+    width: 122px;
+    height: 122px;
+}
+
+.circle-mid-top .circle-image,
+.circle-mid-bottom .circle-image {
+    width: 102px;
+    height: 102px;
+}
+
+.circle-top-left .circle-image,
+.circle-bottom-right .circle-image {
+    width: 87px;
+    height: 87px;
+}
+
+.circle-bg-1 .circle-image,
+.circle-bg-2 .circle-image,
+.circle-bg-3 .circle-image,
+.circle-bg-4 .circle-image {
+    width: 65px;
+    height: 65px;
+}
+
+/* Positioning the 7 Interactive Circles */
+.circle-main {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: breathingPulse 4s ease-in-out infinite, slowFloat 8s ease-in-out infinite;
+}
+
+.circle-left {
+    top: 35%;
+    left: 15%;
+    animation: breathingPulse 4.5s ease-in-out infinite 0.5s, slowFloat 9s ease-in-out infinite 0.5s;
+}
+
+.circle-right {
+    bottom: 30%;
+    right: 15%;
+    animation: breathingPulse 4.5s ease-in-out infinite 1s, slowFloat 10s ease-in-out infinite 1s;
+}
+
+.circle-mid-top {
+    top: 10%;
+    left: 45%;
+    animation: breathingPulse 5s ease-in-out infinite 0.2s, slowFloat 7s ease-in-out infinite 0.3s;
+}
+
+.circle-mid-bottom {
+    bottom: 10%;
+    right: 40%;
+    animation: breathingPulse 5.2s ease-in-out infinite 0.8s, slowFloat 11s ease-in-out infinite 0.6s;
+}
+
+.circle-top-left {
+    top: 15%;
+    left: 30%;
+    animation: breathingPulse 4.8s ease-in-out infinite 1.2s, slowFloat 12s ease-in-out infinite 0.4s;
+}
+
+.circle-bottom-right {
+    bottom: 15%;
+    right: 25%;
+    animation: breathingPulse 5.5s ease-in-out infinite 1.5s, slowFloat 9s ease-in-out infinite 1.2s;
+}
+
+/* Background Circles */
+.circle-bg-1 {
+    top: 5%;
+    left: 5%;
+    animation: slowFloat 15s ease-in-out infinite;
+}
+
+.circle-bg-2 {
+    bottom: 5%;
+    left: 20%;
+    animation: slowFloat 18s ease-in-out infinite 1s;
+}
+
+.circle-bg-3 {
+    top: 25%;
+    right: 5%;
+    animation: slowFloat 20s ease-in-out infinite 2s;
+}
+
+.circle-bg-4 {
+    bottom: 10%;
+    right: 5%;
+    animation: slowFloat 22s ease-in-out infinite 0.5s;
+}
+
+/* Badge and Meta */
+.circle-badge {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(30, 20, 35, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.circle-badge i {
+    color: var(--color-flame);
+    font-size: 0.65rem;
+}
+
+.circle-info {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.circle-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.circle-main .circle-name {
+    font-size: 0.95rem;
+    color: white;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.audio-circle-item:hover {
+    transform: scale(1.1) translateY(-10px) !important;
+    z-index: 30;
+    animation-play-state: paused;
+}
+
+
 
 /* === Categories Section === */
 .categories-section {
@@ -666,80 +801,66 @@ body::after {
     color: var(--color-flame);
 }
 
-/* === Stories Section === */
+/* === Stories Section - Horizontal Triptych Layout === */
 .stories-section {
     margin-bottom: var(--space-xl);
 }
 
-.stories-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm);
+.stories-grid.triptych {
+    display: flex;
+    flex-direction: column;
+    /* Stack vertically for horizontal slices */
+    gap: 8px;
 }
 
 .story-card {
-    border-radius: var(--radius-md);
-    overflow: hidden;
     background: var(--color-bg-card);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
-    position: relative;
+    display: flex;
+    /* Image on left or full width? User said horizontal bars. */
+    align-items: center;
 }
 
 .story-card:hover {
-    border-color: rgba(255, 107, 53, 0.6);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-color: var(--color-flame);
+    transform: translateX(5px);
 }
 
-/* Click Animation */
-.story-card:active,
-.benefit-card:active {
-    transform: scale(0.96);
-    box-shadow: 0 0 12px rgba(255, 107, 53, 0.4);
+.story-triptych {
+    width: 200px;
+    /* Vertical width for the segment */
+    min-width: 200px;
+    aspect-ratio: 2.5;
+    /* Horizontal slice shape */
+    background-image: url('images/hockey_story.png');
+    background-size: 100% 300%;
+    /* Spans 3 cards vertically */
+    background-repeat: no-repeat;
+    border-radius: var(--radius-md);
+    margin: 10px;
 }
 
-
-
-.story-image {
-    width: 100%;
-    aspect-ratio: 1.5;
-    /* Matches 450x300 */
-    background-size: 100% 100%;
-    /* Shows the WHOLE image without cropping */
-    background-position: center;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.triptych-part-1 .story-triptych {
+    background-position: center top;
 }
 
-.story-img-1 {
-    background-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-        url('images/Mirror Selfie To Ruin Your Day (1).jpg');
+.triptych-part-2 .story-triptych {
+    background-position: center center;
 }
 
-.story-img-2 {
-    background-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-        url('images/Can I Keep Him Forever.png');
-}
-
-.story-badge {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    font-weight: 700;
-    font-style: italic;
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-    letter-spacing: 2px;
+.triptych-part-3 .story-triptych {
+    background-position: center bottom;
 }
 
 .story-description {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    line-height: 1.5;
-    padding: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    padding-right: 20px;
 }
 
 /* === Social Proof Section === */
