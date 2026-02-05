@@ -542,18 +542,18 @@ body::after {
 }
 
 .benefit-img-1 {
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-        url('images/Leave A Mark So They Know (1).jpg');
+    background-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
+        url('https://images.unsplash.com/photo-1518133835878-5a93cc3f89e5?auto=format&fit=crop&w=800&q=80');
 }
 
 .benefit-img-2 {
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-        url('images/Pov Youre Dating Him.png');
+    background-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
+        url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=800&q=80');
 }
 
 .benefit-img-3 {
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-        url('images/Can I Keep Him Forever.png');
+    background-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
+        url('https://images.unsplash.com/photo-1516724562728-afc824a36e84?auto=format&fit=crop&w=800&q=80');
 }
 
 .benefit-overlay {
@@ -651,13 +651,13 @@ body::after {
 }
 
 .story-img-1 {
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-        url('images/Mirror Selfie To Ruin Your Day (1).jpg');
+    background-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
+        url('https://images.unsplash.com/photo-1515549832467-d3b699a799b2?auto=format&fit=crop&w=600&q=80');
 }
 
 .story-img-2 {
-    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
-        url('images/Can I Keep Him Forever.png');
+    background-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.4) 100%),
+        url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80');
 }
 
 .story-badge {
